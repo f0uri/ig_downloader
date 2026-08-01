@@ -33,7 +33,8 @@ jobs:
           sed -i 's/^requirements.*/requirements = python3,kivy==2.2.1,requests,yt-dlp,sqlite3,urllib3,charset_normalizer,certifi,idna/' buildozer.spec
           sed -i 's/^orientation.*/orientation = portrait/' buildozer.spec
           sed -i 's/^android.permissions.*/android.permissions = INTERNET,WRITE_EXTERNAL_STORAGE,READ_EXTERNAL_STORAGE/' buildozer.spec
-          buildozer android debug
+          mkdir -p ~/.android && touch ~/.android/repositories.cfg
+          yes | buildozer android debug
         timeout-minutes: 60
       
       - name: Upload APK
